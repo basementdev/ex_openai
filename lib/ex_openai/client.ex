@@ -82,7 +82,7 @@ defmodule ExOpenAI.Client do
     request_options_map = Enum.into(request_options, %{})
 
     headers =
-      []
+      (request_options_map[:custom_headers] || [])
       |> add_json_request_headers()
       |> add_organization_header(Map.get(request_options_map, :openai_organization_key, nil))
       |> add_bearer_header(Map.get(request_options_map, :openai_api_key, nil))
@@ -114,7 +114,7 @@ defmodule ExOpenAI.Client do
     request_options_map = Enum.into(request_options, %{})
 
     headers =
-      []
+      (request_options_map[:custom_headers] || [])
       |> add_json_request_headers()
       |> add_organization_header(Map.get(request_options_map, :openai_organization_key, nil))
       |> add_bearer_header(Map.get(request_options_map, :openai_api_key, nil))
@@ -136,7 +136,7 @@ defmodule ExOpenAI.Client do
     request_options_map = Enum.into(request_options, %{})
 
     headers =
-      []
+      (request_options_map[:custom_headers] || [])
       |> add_json_request_headers()
       |> add_organization_header(Map.get(request_options_map, :openai_organization_key, nil))
       |> add_bearer_header(Map.get(request_options_map, :openai_api_key, nil))
