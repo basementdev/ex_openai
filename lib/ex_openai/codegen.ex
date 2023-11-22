@@ -646,8 +646,10 @@ defmodule ExOpenAI.Codegen do
       components: component_mapping,
       functions:
         yml["paths"]
-        |> Enum.map(fn {path, field_data} ->
-          parse_path(path, field_data, component_mapping)
+        |> Enum.flat_map(fn {path, field_data} ->
+          Enum.map(field_data, fn {method, data} ->
+            parse_path(path, %{method => data}, component_mapping)
+          end)
         end)
         |> Enum.filter(&(!is_nil(&1)))
     }
